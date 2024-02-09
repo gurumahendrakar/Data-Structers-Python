@@ -1,5 +1,5 @@
-
-
+import time
+import threading
 
 class Node:
 
@@ -10,7 +10,7 @@ class Node:
 
 
 
-class Double:
+class CircularDouble:
     def __init__(self):
         self.__head = None
         self.currentNode = None
@@ -26,6 +26,7 @@ class Double:
         self.__length -= 1
         Popped = self.currentNode._Node__value
         self.currentNode = self.currentNode._Node__prev
+        self.currentNode._Node__next = self.__head
         return Popped
 
     def Remove(self, value__):
@@ -44,20 +45,24 @@ class Double:
             current__ = current__._Node__next
 
     def printSTR(self):
-        STR = "["
+
         currnet__ = self.__head
+        count = 0
         while (currnet__):
-            STR+= f" {currnet__._Node__value} "
+            print(f" {currnet__._Node__value} ",end=" ")
+            time.sleep(1)
             currnet__ = currnet__._Node__next
-        STR+="]"
-        return STR
+            count+=1
+            if (self.__length == count ):
+                count = 0
+                print("\n")
 
     def Insert(self, index__, value__):
         if (index__ >= 0 and self.__length > index__):
             loop = 0
             current__ = self.__head
-            while (loop != index__ ):
-                current__ = current__._Node__next
+            while (loop != index__):
+                current = current__._Node__next
                 loop += 1
 
             current__._Node__value = value__
@@ -74,6 +79,7 @@ class Double:
 
 
         node = Node(value__)
+        node._Node__next = self.__head
         node._Node__prev = self.currentNode
         self.currentNode._Node__next = node
         self.currentNode = self.currentNode._Node__next
@@ -87,8 +93,10 @@ class Double:
         return self.printSTR()
 
 
-double =  Double()
-for i in range(25):
-    double.Push(i)
+circular =  CircularDouble()
+for i in range(5):
+    circular.Push(i)
 
-print(double)
+
+
+circular.Insert(4,1000)

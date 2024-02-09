@@ -36,12 +36,12 @@ class LinkedList:
     def Insert(self,index__,value__):
         if (index__ >= 0 and self.length  > index__):
             loop = 0
-            current = self.__head
+            current__ = self.__head
             while (loop != index__ ):
-                current = current.__next
+                current__ = current__.__next
                 loop+=1
 
-            current.__value = value__
+            current__.__value = value__
             return None
 
         raise IndexError("Choose A Right Index")
@@ -87,12 +87,11 @@ class LinkedList:
                     return
                 else:
                     prev__.__next = current__.__next
-                return None
 
+                return None
 
             prev__ = current__
             current__ = current__.__next
-
 
         else:
             raise Exception("Value Doe`s Not Match !!")
@@ -106,12 +105,8 @@ class LinkedList:
         return Popped
 
 
-Linked = LinkedList()
-Linked.Append(1)
-Linked.Append(2)
-Linked.Append(3)
-print(Linked)
-Linked.Insert(0,300)
-Linked.Remove(2)
-Linked.Append(33)
-print(Linked)
+SignleLinked= LinkedList()
+for i in range(25):
+    SignleLinked.Append(i)
+
+print(SignleLinked)
